@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+
+public class Coins {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.print("Enter the amount in dollars: ");
+        double amountInDollars = scanner.nextDouble();
+
+
+        Coins coins = new Coins(0, 0, 0);
+        coins.setQuarters(amountInDollars / 0.25);
+
+
+        coins.breakdownIntoCoins();
+
+
+        scanner.close();
+    }
+
+
+    private double quarters;
+    private double dimes;
+    private double nickels;
+
+
+
+
+    public Coins(double quarters, double dimes, double nickels) {
+        this.quarters = quarters;
+        this.dimes = dimes;
+        this.nickels = nickels;
+    }
+
+
+    public double getQuarters() {
+        return quarters;
+    }
+
+
+    public void setQuarters(double quarters) {
+        this.quarters = quarters;
+    }
+
+
+    public double getDimes() {
+        return dimes;
+    }
+
+
+    public void setDimes(double dimes) {
+        this.dimes = dimes;
+    }
+
+
+    public double getNickels() {
+        return nickels;
+    }
+
+
+    public void setNickels(double nickels) {
+        this.nickels = nickels;
+    }
+    public double convertToDollars(){
+        double totalAmount = (quarters * 0.25) + (dimes * 0.10) + (nickels * 0.05);
+        return totalAmount;
+    }
+    public void breakdownIntoCoins() {
+        int totalCents = (int) (convertToDollars() * 100);
+        int quartersCount = totalCents / 25;
+        totalCents %= 25;
+        int dimesCount = totalCents / 10;
+        totalCents %= 10;
+        int nickelsCount = totalCents / 5;
+        totalCents %= 5;
+        System.out.println("Breakdown of coins:");
+        System.out.println("Quarters:" + quartersCount);
+        System.out.println("Dimes:" + dimesCount);
+        System.out.println("Nickels:" + nickelsCount);
+
+
+        {
+            Scanner scanner = new Scanner(System.in);
+
+
+
+
+
+
+            Coins coins = new Coins(quarters, dimes, nickels);
+
+
+
+
+            scanner.close();
+
+
+
+
+        }
+    }}
