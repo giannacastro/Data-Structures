@@ -1,0 +1,104 @@
+
+import java.util.Scanner; // for user input
+public class bigYstore {
+    String size; // size of the pizzas
+    int sizePrice, toppingsCount; // the prices of the pizza sizes and amount of toppings
+    final double TOPPING_PRICE = 0.50;  // initial/single topping price
+    boolean glutenFree; //creativity and deicded to use a boolean/ and will ask user if they are gluten-free
+
+
+
+    public bigYstore(String size, int toppingsCount, boolean glutenFree) { // constructor method for the class
+        this.size = size; // allows size value to be used in other methods within the class
+        this.toppingsCount = toppingsCount; // allows toppingCount value to be used in other methods within the class
+        this.glutenFree = glutenFree; // allows glutenFree boolean to be used in other methods of the class
+        setSizePrice(size); // called to set the price of the pizza based on the given size
+    }
+
+    private void setSizePrice(String size) { // makes it so that each pizza will have its own attributes
+        switch (size.toLowerCase()) { // checks to see if user input matches the following cases, will be executed if so, or will default if not. Also ensures case-sensitivity
+            case "small": // determines the small pizza
+                this.sizePrice = 5; // sets the price of the small pizza
+                break; // switches to next statement
+            case "medium": // determines the medium pizza size
+                this.sizePrice = 10; // sets medium pizza price
+                break; // switches to the next statement
+            case "large": // determines the large pizza
+                this.sizePrice = 15; // sets the large pizza price
+                break; // switches to the next statement
+            case "super": // determines the super pizza size
+                this.sizePrice = 20; // sets super pizza price
+                break; // switches to the next statement
+
+            default: // what the program will default to if user didn't use any of the previous cases/pizza sizes
+                this.sizePrice = 0; // default to 0 if size is unrecognized
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+    public double totalPrice() { // calculates the total price of the pizza and different amounts of toppings
+        double toppingsPrice = this.toppingsCount > 2 ? 1.25 : this.toppingsCount * TOPPING_PRICE; // states if the topping amount is greater than two for it to equal 1.25 and not 1.50
+        double glutenFree = this.glutenFree ? 1 :0; // creativity / boolean which determines if gluten-free is "yes", $1 will be added to the overall price
+
+        return this.sizePrice + toppingsPrice + glutenFree; // returns the pizza price accumulated with the topping price
+
+
+    }
+
+
+
+    public static void main(String[] args) { // so the program can execute
+        Scanner scanner = new Scanner(System.in); // for reading user input
+
+
+
+        System.out.print("Enter the location (Fort Worth, Los Angeles, Manhattan):"); //creativity/ locations that will print out for user to choose from
+        String location = scanner.nextLine(); // takes user input of location
+
+        System.out.println("Welcome to Big Y Pizza Store in " + location + "!");//welcome/creativity/ states what location you chose
+
+        String specialPizza = ""; // seperates strings 68-77 from the 82nd string
+        if (location.equalsIgnoreCase("Fort Worth")) {
+            System.out.print("Would you like to add the Fort Worth Special BBQ chicken cheesy bread to your pizza order for free?(yes/no):"); //creativty/ different locations assigned specailty dishes
+            specialPizza = scanner.nextLine(); // takes user input
+        } if (location.equalsIgnoreCase("Los Angeles")){
+            System.out.print("Would you like to add the Los Angeles Special carne de birría cilantro rolls to your pizza order for free?(yes/no):"); //creativity /different locations assigned specailty dishes
+            specialPizza = scanner.nextLine(); // takes user input
+        }
+        else if (location.equalsIgnoreCase("Manhattan")) {
+            System.out.print("Would you like to add the Manhattan Special garlic knots to your pizza order for free?(yes/no):"); // creativity / different locations assigned specailty dishes
+            specialPizza = scanner.nextLine(); // takes user input
+
+
+        }
+
+        System.out.print("Enter the size of your custom order (special comes as is) (small = $5, medium = $10, large = $15, super = $20):"); // when program is ran, this is what will print out
+        String size = scanner.nextLine(); // method for taking in the users input then assigning it to the total price variable
+
+
+        System.out.print("Enter up the number of toppings. You can choose up to three. (cheese and extra cheese is a free topping and does not count):"); // asks the user to enter amount of toppings they want on their pizza
+         int toppingsCount = scanner.nextInt(); // for reading user integer input
+
+        System.out.println("Are you gluten-free? Get gluten-free crust for an additional dollar (yes/no)"); // creativity
+        String glutenFreeInput = scanner.next(); // reading user string input
+        boolean glutenFree = glutenFreeInput.equalsIgnoreCase("yes");//creativity// adds $1 to overall price if user says "yes"
+
+
+       
+        bigYstore order = new bigYstore(size, toppingsCount, glutenFree); // creates and sums up the user's pizza order so a price can be accumilated
+         System.out.println("Total Price: $" + order.totalPrice() + ". Enjoy your " + size + " pizza!"); //creativity/ prints out the price of the user's order/
+
+
+
+
+         scanner.close(); // closes the user input
+    }
+}
