@@ -1,34 +1,41 @@
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
 
-public class UseDinnerParty {
+public class DinnerParty extends Party {
+    private String dinnerChoice;
+
+    public void setDinnerChoice(String choice) {
+        dinnerChoice = choice;
+    }
+
+    public String getDinnerChoice() {
+        return dinnerChoice;
+    }
+
     public static void main(String[] args) {
-        Party aParty = new Party();
-        aParty.setGuests(5);
-        aParty.displayInvitation();
+        DinnerParty dinnerParty = new DinnerParty();
 
-        // represents a DinnerParty object
-        DinnerParty aDinnerParty = new DinnerParty();
-
-        // prompt for the number of guests for the DinnerParty
+        // uses JOptionPane to get the number of guests
         String guestsInput = JOptionPane.showInputDialog("Enter the number of guests for the dinner party:");
         int numGuests = Integer.parseInt(guestsInput);
-        aDinnerParty.setGuests(numGuests);
+        dinnerParty.setGuests(numGuests);
 
-        // prompt for the dinner choice
-        String dinnerChoice = JOptionPane.showInputDialog("Choose the dinner type (1 for Mexican, 2 for Indian):");
-        int choices = Integer.parseInt(dinnerChoice);
-        if (choices == 1) {
-            aDinnerParty.setDinnerChoice("Mexican");
-        } else if (choices == 2) {
-            aDinnerParty.setDinnerChoice("Indian");
-        }
+        // uses JOptionPane to get the dinner choice
+        String dinnerInput = JOptionPane.showInputDialog("What will be served for dinner?");
+        dinnerParty.setDinnerChoice(dinnerInput);
 
-        // displays all the data for the DinnerParty
-        JOptionPane.showMessageDialog(null, "The dinner party has " + aDinnerParty.getGuests() +
-                " guests and will serve " + aDinnerParty.getDinnerChoice() + " food.");
+        // creates a fancy font for the dinner choice // creativity
+        Font fancyFont = new Font("Script", Font.BOLD, 16);
 
-        // calls the displayInvitation() method with the DinnerParty object
-        aDinnerParty.displayInvitation();
+        // displays the invitation with the dinner choice in a fancy font
+        JLabel invitationLabel = new JLabel("You're invited to a dinner party! We're serving ");
+        JLabel dinnerChoiceLabel = new JLabel(dinnerParty.getDinnerChoice());
+        dinnerChoiceLabel.setFont(fancyFont);
+
+        JPanel invitationPanel = new JPanel();
+        invitationPanel.add(invitationLabel);
+        invitationPanel.add(dinnerChoiceLabel);
+
+        JOptionPane.showMessageDialog(null, invitationPanel);
     }
 }
