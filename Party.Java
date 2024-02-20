@@ -27,7 +27,7 @@ public class DinnerParty extends Party {
         // creates a fancy font for the dinner choice // creativity
         Font fancyFont = new Font("Script", Font.BOLD, 16);
 
-        // displays the invitation with the dinner choice in a fancy font
+        // displays the invitation with the dinner choice in a different font
         JLabel invitationLabel = new JLabel("You're invited to a dinner party! We're serving ");
         JLabel dinnerChoiceLabel = new JLabel(dinnerParty.getDinnerChoice());
         dinnerChoiceLabel.setFont(fancyFont);
