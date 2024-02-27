@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class BadSubScriptCaught {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] array = new String[10]; // Set the array size to 10
+
+        try {
+            System.out.println("Enter a list of last names (up to 10 last names): ");
+            for (int i = 0; i < array.length; i++) {
+                array[i] = sc.nextLine();
+                if (array[i].isEmpty()) { // Break the loop if the user enters an empty line
+                    break;
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Please re-enter the amount of last names. It can only accept up to 10.");
+        }
+
+        System.out.println("Array elements are:");
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) { // Check if the element is not null before printing
+                System.out.println(array[i]);
+            }
+        }
+        sc.close(); // Close the scanner
+    }
+}
+
+// my code makes it so that the user is unable to enter more than 10 last names, but if for some reason they are, there is a catch statement.
